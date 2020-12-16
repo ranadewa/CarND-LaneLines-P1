@@ -12,14 +12,19 @@ The goals / steps of this project are the following:
 
 ### 1. Pipe line description
   The implemented pipe line has following steps.  
-  #### Step 1: Convert image to greyscale.  
+  #### Step 1: Convert image to greyscale  
   This is done to converge (R,G,B) channels to one channel which would be used as primay image for further processing. Lane lines have bright colors and the resulting grey image would have higher pixel values for lane lines.
-  #### Step 2: Apply color mask.
-  #### Step 3: Define area of interest.
-  #### Step 4: Use Canny edge detection.
-  #### Step 5: Use HoughLine generation on detected edges.
-  #### Step 6: Draw best fit lines on the original image.
-   
+  #### Step 2: Apply color mask
+  In order to extract brighter lane lines a color mask is applied which would filter out lower pixel values from the image.
+  #### Step 3: Define area of interest
+  Since the image can have brigher colors in other areas (sky, cars, sign boards) as well an area of interest is defined which closely encircles the road. This filters out other higher value pixels from the image. 
+  #### Step 4: Use Canny edge detection
+  Gaussian blurring is applied on above image to reduce the noice and then canny edge detection is done to get points which has the highest gradient change. The result would have non zero pixel along the edges in the image. 
+  #### Step 5: Use HoughLine generation on detected edges
+  The result from the above step is fed to HoughLine generation function which returns lines (two coordinate points) matching the generation crietieria. These line segments will be aligned with the lane lines. These segments are then used to derive the best fit line using ```draw_lines()``` function. How it works is defined here.
+
+  #### Step 6: Draw best fit lines on the original image
+  The best fit lines are drawn on the original image.
 
 
  |  | |
@@ -35,8 +40,8 @@ The goals / steps of this project are the following:
 
 
 <img src="test_images_output/pipeline/7%20coordintate%20from%20hough%20line%20detection%20and%20the%20best%20fit%20line.png" width="200"/> <br>
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
 
+#### ```draw_lines()``` function enhancement
 In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
