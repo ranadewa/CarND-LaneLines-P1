@@ -11,15 +11,26 @@ The goals / steps of this project are the following:
 ### Reflection
 
 ### 1. Pipe line description
+  The implemented pipe line has following steps.  
+  1. Convert image to greyscale.  
+        This is done to converge (R,G,B) channels to one channel which would be used as primay image for further processing. Lane lines have bright colors and the resulting grey image would have higher pixel values for lane lines.
+  2. Apply color mask.
+  3. Define area of interest.
+  4. Use Canny edge detection.
+  5. Use HoughLine generation on detected edges.
+  6. Draw best fit lines on the original image.
+   
+
+
  |  | |
  |-------|----|
- |1. Original | 2. Greyscale|
+ |a. Original | b. Converting to Grey Scale (Step 1) |
  |<img src="test_images_output/pipeline/1%20original.png" width="500"/>|<img src="test_images_output/pipeline/2%20greayscale.png" width="500"/>|
- |3. Color Mask applied | 4. Area of interest defined|
+ |c. Color Mask applied (Step 2) | d. Area of interest defined (Step 3)|
 |<img src="test_images_output/pipeline/3%20color%20mask%20applied.png" width="500"/>|<img src="test_images_output/pipeline/4%20area%20of%20interest%20taken.png" width="500"/>|
-|5. Gaussian blur applied| 6. Canny Edge detection applied|
+|e. Gaussian blur applied (Step 4)| f. Canny Edge detection applied (Step 4)|
 |<img src="test_images_output/pipeline/5%20gaussian%20blurred.png" width="500"/>|<img src="test_images_output/pipeline/6%20canny%20applied.png" width="500"/>|
-|7. Averaged Hough lines to get best fit| 8. Best fit draw on image|
+|g. Averaged Hough lines to get best fit (Step 5)| h. Draw best fit on image (Step 6)|
 |<img src="test_images_output/pipeline/8%20best%20line%20fitted.png" width="500"/>|<img src="test_images_output/pipeline/9%20line%20drawn%20on%20the%20image.png" width="500"/>|
 
 
