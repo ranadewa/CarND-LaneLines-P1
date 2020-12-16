@@ -21,12 +21,13 @@ The goals / steps of this project are the following:
   #### Step 4: Use Canny edge detection
   Gaussian blurring is applied on above image to reduce the noice and then canny edge detection is done to get points which has the highest gradient change. The result would have non zero pixel along the edges in the image. 
   #### Step 5: Use HoughLine generation on detected edges
-  The result from the above step is fed to HoughLine generation function which returns lines (two coordinate points) matching the generation crietieria. These line segments will be aligned with the lane lines. These segments are then used to derive the best fit line using ```draw_lines()``` function. How it works is defined [here](https://github.com/ranadewa/CarND-LaneLines-P1/blob/master/writeup_template.md#draw_lines-function-enhancement).
+  The result from the above step is fed to HoughLine generation function which returns lines (two coordinate points) matching the generation crietieria. These line segments which are aligned with the lane lines are then used to derive the best fit line using ```draw_lines()``` function. How it works is defined [here](https://github.com/ranadewa/CarND-LaneLines-P1/blob/master/writeup_template.md#draw_lines-function-enhancement).
 
   #### Step 6: Draw best fit lines on the original image
   The best fit lines are drawn on the original image.
 
-
+ ### Pipeline in action
+ Given below are images at each stage of the pipeline.
  |  | |
  |-------|----|
  |a. Original | b. Converting to Grey Scale (Step 1) |
@@ -42,6 +43,57 @@ The goals / steps of this project are the following:
 <img src="test_images_output/pipeline/7%20coordintate%20from%20hough%20line%20detection%20and%20the%20best%20fit%20line.png" width="200"/> <br>
 
 #### ```draw_lines()``` function enhancement
+This function is fed with the generate Hough lines. Each Hough line is represented by two coordinate points. First these lines are sparated as left line lane or right line lane by checking the gradient. Left lane has a positive gradient with _x-axsis_ whereas right lane has a negative gradient. 
+```python
+    for line in lines:
+        for x1,y1,x2,y2 in line:
+            
+            m = (y2-y1)/(x2-x1)
+            
+            if(invalidGradient(m)):
+                continue
+            elif(m > 0): # left line
+                selected_lines = left_lines
+            else :
+                selected_lines = right_lines
+            
+            selected_lines[0].append(x1)
+            selected_lines[0].append(x2)
+            selected_lines[1].append(y1)
+            selected_lines[1].append(y2)
+```
+After above seperation the best fit line for the coordinates is calculated using numpy's polyfit function for a 1st degree polynomial.
+```python
+m, b = np.polyfit(lines[0], lines[1], 1)
+```
+
+In some cases the left lane can have Hough lines which might have a small negative gradient or vice versa. In order to avoid these kind of scenarios a gradient validation function is defined as below.
+```python
+def invalidGradient(m):
+    return abs(m) < 0.5 or abs(m) > 0.8
+```
+The values for upper and lower bound of this function is decided by looking at the emperical values returned by the np.polyfit funtion for the test image set.
+```
+solidWhiteCurve.jpg
+grad: 0.5667955203478112, inters: 36.602850952764314
+grad: -0.785788343871845, inters: 684.7752908608066
+solidWhiteRight.jpg
+grad: 0.6457502258798224, inters: -2.0708338799410453
+grad: -0.7075461250526038, inters: 647.7610910540652
+solidYellowCurve.jpg
+grad: 0.63282941446994, inters: 6.458938557458027
+grad: -0.7292760194350086, inters: 660.0234748806068
+solidYellowCurve2.jpg
+grad: 0.6076113853953671, inters: 17.385199297656346
+grad: -0.7323791683315588, inters: 660.588457247526
+solidYellowLeft.jpg
+grad: 0.6292965724244773, inters: 4.1443924975099735
+grad: -0.7113211226573143, inters: 646.0804852753902
+whiteCarLaneSwitch.jpg
+grad: 0.5858636347530163, inters: 27.226907756173247
+grad: -0.7840469091940641, inters: 688.7358580237942
+```
+
 In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
