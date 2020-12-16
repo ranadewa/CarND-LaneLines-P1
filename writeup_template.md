@@ -21,7 +21,7 @@ The goals / steps of this project are the following:
   #### Step 4: Use Canny edge detection
   Gaussian blurring is applied on above image to reduce the noice and then canny edge detection is done to get points which has the highest gradient change. The result would have non zero pixel along the edges in the image. 
   #### Step 5: Use HoughLine generation on detected edges
-  The result from the above step is fed to HoughLine generation function which returns lines (two coordinate points) matching the generation crietieria. These line segments will be aligned with the lane lines. These segments are then used to derive the best fit line using ```draw_lines()``` function. How it works is defined here.
+  The result from the above step is fed to HoughLine generation function which returns lines (two coordinate points) matching the generation crietieria. These line segments will be aligned with the lane lines. These segments are then used to derive the best fit line using ```draw_lines()``` function. How it works is defined [here](https://github.com/ranadewa/CarND-LaneLines-P1/blob/master/writeup_template.md#draw_lines-function-enhancement).
 
   #### Step 6: Draw best fit lines on the original image
   The best fit lines are drawn on the original image.
