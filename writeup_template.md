@@ -12,13 +12,13 @@ The goals / steps of this project are the following:
 
 ### 1. Pipe line description
   The implemented pipe line has following steps.  
-  1. Convert image to greyscale.  
-        This is done to converge (R,G,B) channels to one channel which would be used as primay image for further processing. Lane lines have bright colors and the resulting grey image would have higher pixel values for lane lines.
-  2. Apply color mask.
-  3. Define area of interest.
-  4. Use Canny edge detection.
-  5. Use HoughLine generation on detected edges.
-  6. Draw best fit lines on the original image.
+  ##### Step 1: Convert image to greyscale.  
+  This is done to converge (R,G,B) channels to one channel which would be used as primay image for further processing. Lane lines have bright colors and the resulting grey image would have higher pixel values for lane lines.
+  ##### Step 2: Apply color mask.
+  ##### Step 3: Define area of interest.
+  ##### Use Canny edge detection.
+  ##### Use HoughLine generation on detected edges.
+  ##### Draw best fit lines on the original image.
    
 
 
