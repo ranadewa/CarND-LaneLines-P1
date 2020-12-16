@@ -97,13 +97,7 @@ grad: -0.7840469091940641, inters: 688.7358580237942
 1. Needs images with good lighting condition.
 2. Region of interest is hard coded. Will not work with another image set with a different view.
 3. If a car or a tree puts its shadow on a line lane the accuracy reduces.
-4. 
-
-Another shortcoming could be ...
-
 
 ### 3. Possible improvements to the pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+1. Devise a method to top coordinates of the region of interest instead of hard coding them.
+2. Tune the parameters to generalise for different lighting conditions. 
