@@ -39,9 +39,6 @@ The goals / steps of this project are the following:
 |g. Averaged Hough lines to get best fit (Step 5)| h. Draw best fit on image (Step 6)|
 |<img src="test_images_output/pipeline/8%20best%20line%20fitted.png" width="500"/>|<img src="test_images_output/pipeline/9%20line%20drawn%20on%20the%20image.png" width="500"/>|
 
-
-<img src="test_images_output/pipeline/7%20coordintate%20from%20hough%20line%20detection%20and%20the%20best%20fit%20line.png" width="200"/> <br>
-
 #### ```draw_lines()``` function enhancement
 This function is fed with the generate Hough lines. Each Hough line is represented by two coordinate points. First these lines are sparated as left line lane or right line lane by checking the gradient. Left lane has a positive gradient with _x-axsis_ whereas right lane has a negative gradient. 
 ```python
@@ -66,8 +63,9 @@ After above seperation the best fit line for the coordinates is calculated using
 ```python
 m, b = np.polyfit(lines[0], lines[1], 1)
 ```
-
-In some cases the left lane can have Hough lines which might have a small negative gradient or vice versa. In order to avoid these kind of scenarios a gradient validation function is defined as below.
+The coordinates and the best fit line through them can be show as below.
+<img src="test_images_output/pipeline/7%20coordintate%20from%20hough%20line%20detection%20and%20the%20best%20fit%20line.png" width="500"/> <br>
+In some cases the left lane can have Hough lines which might have a small negative gradient or vice versa. In order to avoid these kind of scenarios a gradient validation function is defined.
 ```python
 def invalidGradient(m):
     return abs(m) < 0.5 or abs(m) > 0.8
@@ -93,13 +91,6 @@ whiteCarLaneSwitch.jpg
 grad: 0.5858636347530163, inters: 27.226907756173247
 grad: -0.7840469091940641, inters: 688.7358580237942
 ```
-
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
-
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
-
 
 ### 2. Identify potential shortcomings with your current pipeline
 
