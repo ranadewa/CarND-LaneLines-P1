@@ -40,7 +40,7 @@ The goals / steps of this project are the following:
 |<img src="test_images_output/pipeline/8%20best%20line%20fitted.png" width="500"/>|<img src="test_images_output/pipeline/9%20line%20drawn%20on%20the%20image.png" width="500"/>|
 
 #### ```draw_lines()``` function enhancement
-This function is fed with the generate Hough lines. Each Hough line is represented by two coordinate points. First these lines are sparated as left line lane or right line lane by checking the gradient. Left lane has a positive gradient with _x-axsis_ whereas right lane has a negative gradient. 
+This function is fed with the generate Hough lines. Each Hough line is represented by two coordinate points. First these lines are sparated as left line lane or right line lane by checking the gradient. Left lane has a negative gradient with _x-axsis_ whereas right lane has a positive gradient. 
 ```python
     for line in lines:
         for x1,y1,x2,y2 in line:
@@ -49,7 +49,7 @@ This function is fed with the generate Hough lines. Each Hough line is represent
             
             if(invalidGradient(m)):
                 continue
-            elif(m > 0): # left line
+            elif(m < 0): # left line
                 selected_lines = left_lines
             else :
                 selected_lines = right_lines
@@ -92,15 +92,17 @@ grad: 0.5858636347530163, inters: 27.226907756173247
 grad: -0.7840469091940641, inters: 688.7358580237942
 ```
 
-### 2. Identify potential shortcomings with your current pipeline
+### 2. Potential shortcomings with the current pipeline
 
-
-One potential shortcoming would be what would happen when ... 
+1. Needs images with good lighting condition.
+2. Region of interest is hard coded. Will not work with another image set with a different view.
+3. If a car or a tree puts its shadow on a line lane the accuracy reduces.
+4. 
 
 Another shortcoming could be ...
 
 
-### 3. Suggest possible improvements to your pipeline
+### 3. Possible improvements to the pipeline
 
 A possible improvement would be to ...
 
