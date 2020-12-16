@@ -14,13 +14,13 @@ The goals / steps of this project are the following:
  |  | |
  |-------|----|
  |1. Original | 2. Greyscale|
- |<img src="test_images_output/pipeline/1%20original.png" width="200"/>|<img src="test_images_output/pipeline/2%20greayscale.png" width="200"/>|
+ |<img src="test_images_output/pipeline/1%20original.png" width="500"/>|<img src="test_images_output/pipeline/2%20greayscale.png" width="500"/>|
  |3. Color Mask applied | 4. Area of interest defined|
-|<img src="test_images_output/pipeline/3%20color%20mask%20applied.png" width="200"/>|<img src="test_images_output/pipeline/4%20area%20of%20interest%20taken.png" width="200"/>|
+|<img src="test_images_output/pipeline/3%20color%20mask%20applied.png" width="500"/>|<img src="test_images_output/pipeline/4%20area%20of%20interest%20taken.png" width="500"/>|
 |5. Gaussian blur applied| 6. Canny Edge detection applied|
-|<img src="test_images_output/pipeline/5%20gaussian%20blurred.png" width="200"/>|<img src="test_images_output/pipeline/6%20canny%20applied.png" width="200"/>|
+|<img src="test_images_output/pipeline/5%20gaussian%20blurred.png" width="500"/>|<img src="test_images_output/pipeline/6%20canny%20applied.png" width="500"/>|
 |7. Averaged Hough lines to get best fit| 8. Best fit draw on image|
-|<img src="test_images_output/pipeline/8%20best%20line%20fitted.png" width="200"/>|<img src="test_images_output/pipeline/9%20line%20drawn%20on%20the%20image.png" width="200"/>|
+|<img src="test_images_output/pipeline/8%20best%20line%20fitted.png" width="500"/>|<img src="test_images_output/pipeline/9%20line%20drawn%20on%20the%20image.png" width="500"/>|
 
 
 <img src="test_images_output/pipeline/7%20coordintate%20from%20hough%20line%20detection%20and%20the%20best%20fit%20line.png" width="200"/> <br>
